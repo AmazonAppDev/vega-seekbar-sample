@@ -1,0 +1,183 @@
+// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// SPDX-License-Identifier: MIT-0
+
+import React from 'react';
+
+import {
+  DisplayAboveThumbProps,
+  SeekBar,
+} from '@amazon-devices/kepler-ui-components';
+import {Image, StyleSheet, Text, View} from 'react-native';
+import {COLORS} from '../constants/colors';
+import Header from '../components/Header';
+import {ScreenProps} from '../types/navigation';
+
+/**
+ * Custom thumb icon with circular focused state and rectangular unfocused state.
+ * Provides clear visual feedback for TV remote navigation.
+ */
+const ThumbIcon = ({focused}: {focused: boolean}) => (
+  <View style={focused ? styles.focusedThumb : styles.unfocusedThumb} />
+);
+
+const INITIAL_VALUE = 0;
+const TOTAL_VALUE = 2000;
+const STEP_VALUE = 10;
+
+const FAST_FORWARD_IMAGE = require('./../assets/images/fast_forward.png');
+const REWIND_IMAGE = require('./../assets/images/rewind.png');
+
+/**
+ * Display component showing skip forward/backward feedback with speed indicators.
+ *
+ * - Shows speed multiplier (1x, 2x, 3x, etc.) during skip acceleration with Fast Forward/Rewind buttons (<< - >>).
+ * - Displays step values (-10, +10) for single skip actions.
+ * - Includes directional icons to show the seeking direction.
+ */
+const FastForwardRewindLabel = ({mode, multiplier}: DisplayAboveThumbProps) => {
+  const isFastMode = mode === 'fast_rewind' || mode === 'fast_forward';
+
+  const getLabelText = () => {
+    if (multiplier === 1) {
+      if (mode === 'rewind') {
+        return '-10';
+      }
+      if (mode === 'forward') {
+        return '+10';
+      }
+      if (isFastMode) {
+        return '1x';
+      }
+    }
+    if (isFastMode) {
+      return `${multiplier}x`;
+    }
+    return '';
+  };
+
+  const showRewindImage = isFastMode && mode === 'fast_rewind';
+  const showForwardImage = isFastMode && mode === 'fast_forward';
+
+  return (
+    <View style={styles.aboveThumb}>
+      {showRewindImage && (
+        <Image source={REWIND_IMAGE} style={styles.fastForwardRewindImage} />
+      )}
+
+      <Text style={styles.fastForwardRewindLabel}>{getLabelText()}</Text>
+
+      {showForwardImage && (
+        <Image
+          source={FAST_FORWARD_IMAGE}
+          style={styles.fastForwardRewindImage}
+        />
+      )}
+    </View>
+  );
+};
+
+const FastForwardRewind = ({route, navigation}: ScreenProps) => {
+  const {tile} = route.params || {};
+  const {name, title} = tile || {
+    name: 'fast-forward-rewind',
+    title: 'Fast forward / Rewind',
+  };
+
+  /**
+   * Handles continuous value changes during seeking operations.
+   *
+   * - onValueChange fires continuously during dragging/sliding for real-time feedback.
+   * - Logging here helps developers understand the frequency and timing of updates.
+   */
+  const handleOnValueChange = (value: number) => {
+    console.log('onValueChange: ', value);
+  };
+
+  /**
+   * Handles press/selection events on the seek bar.
+   *
+   * - onPress fires when user makes a definitive selection (button press ("select")).
+   * - Different from onValueChange which fires during continuous interaction.
+   */
+  const handleOnPress = (value: number) => {
+    console.log('onPress: ', value);
+  };
+
+  return (
+    <View style={styles.container}>
+      <Header title={title} name={name} navigation={navigation} />
+      <View style={styles.seekbar}>
+        <SeekBar
+          currentValue={INITIAL_VALUE}
+          step={STEP_VALUE}
+          totalValue={TOTAL_VALUE}
+          onValueChange={handleOnValueChange}
+          onPress={handleOnPress}
+          thumbIcon={ThumbIcon}
+          currentValueIndicatorColor={(focused: boolean) =>
+            focused ? COLORS.PRIMARY_BLUE : COLORS.WHITE
+          }
+          disabledWhenNotFocused={true} // Prevents accidental activation when not focused.
+          disableThumbnail={true} // No preview thumbnails in skip example.
+          displayAboveThumb={FastForwardRewindLabel} // Shows skip acceleration feedback.
+          enableSkipForwardBackwardAcceleration={true} // Core feature: enables skip button acceleration.
+          stepMultiplierFactor={1} // Incremental step increase (1x, 2x, 3x progression).
+          stepMultiplierFactorInterval={1000} // Accelerates every 1 second of repeated skipping.
+          longPressIntervalDuration={200} // Fires skip events every 200ms while seeking.
+          longPressDelay={1000} // Delay before acceleration starts.
+          maxStepValue={50} // Maximum step size limit.
+          trapFocus // Keeps focus within seek bar during interaction.
+          enableAnimations // Smooth visual feedback during skip acceleration.
+        />
+      </View>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  focusedThumb: {
+    height: 40,
+    borderRadius: 20,
+    width: 40,
+    backgroundColor: COLORS.PRIMARY_BLUE,
+  },
+  unfocusedThumb: {
+    height: 40,
+    borderRadius: 20,
+    width: 10,
+    backgroundColor: COLORS.WHITE,
+  },
+  container: {
+    flex: 1,
+    backgroundColor: COLORS.LIGHT_BLACK,
+    alignItems: 'center',
+  },
+  seekbar: {
+    flex: 3,
+    alignSelf: 'center',
+    justifyContent: 'flex-end',
+    width: '90%',
+    paddingBottom: 80,
+  },
+  fastForwardRewindImage: {
+    height: 24,
+    width: 24,
+  },
+  fastForwardRewindLabel: {
+    fontSize: 20,
+    fontWeight: '700',
+    lineHeight: 24,
+    letterSpacing: 0.8,
+    color: COLORS.WHITE,
+  },
+  aboveThumb: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 80,
+    width: 120,
+    display: 'flex',
+    flexDirection: 'row',
+  },
+});
+
+export default FastForwardRewind;

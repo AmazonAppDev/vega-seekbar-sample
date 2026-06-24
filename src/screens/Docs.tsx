@@ -3,7 +3,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {StyleSheet, Text, View, Image, Animated} from 'react-native';
 import {Pressable} from '@amazon-devices/react-native-kepler';
-import LinearGradient from '@amazon-devices/react-linear-gradient';
 import {COLORS} from '../constants/colors';
 import Title from '../components/Title';
 
@@ -76,16 +75,15 @@ const Docs = ({navigation}: {navigation: any}) => {
                   );
 
                   return focused ? (
-                    <LinearGradient
-                      colors={[
-                        COLORS.TILE_GRADIENT_START,
-                        COLORS.TILE_GRADIENT_END,
-                      ]}
-                      start={{x: 0, y: 0}}
-                      end={{x: 1, y: 0}}
-                      style={styles.gradient}>
+                    <View
+                      style={[
+                        styles.gradient,
+                        {
+                          experimental_backgroundImage: `linear-gradient(to right, ${COLORS.TILE_GRADIENT_START}, ${COLORS.TILE_GRADIENT_END})`,
+                        },
+                      ]}>
                       {content}
-                    </LinearGradient>
+                    </View>
                   ) : (
                     content
                   );

@@ -33,7 +33,7 @@ const Title = ({title, navigation}: TitleProps) => {
             resizeMode="center"
           />
         </Pressable>
-        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.title} numberOfLines={1}>{title}</Text>
       </View>
     </View>
   );
@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 50,
     borderWidth: 2,
+    borderColor: 'transparent',
     marginLeft: -25,
   },
   backButtonFocused: {

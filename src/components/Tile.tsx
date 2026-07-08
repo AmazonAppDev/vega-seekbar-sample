@@ -3,6 +3,7 @@
 
 import React, {useRef} from 'react';
 import {View, StyleSheet, Animated, Text, Image} from 'react-native';
+import LinearGradient from '@amazon-devices/react-linear-gradient';
 import {Pressable} from '@amazon-devices/react-native-kepler';
 import {COLORS} from '../constants/colors';
 
@@ -71,15 +72,13 @@ export const Tile = ({tile, navigation, tileRef, onFocus}: TileProps) => {
           );
 
           return focused ? (
-            <View
-              style={[
-                styles.gradient,
-                {
-                  experimental_backgroundImage: `linear-gradient(to right, ${COLORS.TILE_GRADIENT_START}, ${COLORS.TILE_GRADIENT_END})`,
-                },
-              ]}>
+            <LinearGradient
+              colors={[COLORS.TILE_GRADIENT_START, COLORS.TILE_GRADIENT_END]}
+              start={{x: 0, y: 0}}
+              end={{x: 1, y: 0}}
+              style={styles.gradient}>
               {content}
-            </View>
+            </LinearGradient>
           ) : (
             content
           );

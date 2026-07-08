@@ -341,7 +341,6 @@ const LiveTV = ({route, navigation}: ScreenProps) => {
 
       <View style={styles.seekbar}>
         <SeekBar
-          hasTVPreferredFocus={true}
           currentValue={progress}
           totalValue={TOTAL_VALUE * EXTRA_SPACE_LIVE_POINT} // Extra space beyond 100% for live point.
           step={STEP_VALUE}

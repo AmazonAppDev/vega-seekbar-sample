@@ -1,13 +1,14 @@
 {
   "preset": "react-native",
-  "setupFiles": [
-    "./test/jest.setup.ts",
-    "./node_modules/@amazon-devices/react-native-kepler/jest/setup.js"
-  ],
+  "transform": {
+    "^.+\\.tsx?$": "ts-jest"
+  },
+  "setupFiles": ["./node_modules/@amazon-devices/react-native-kepler/jest/setup.js"],
   "testRegex": "/test/.*\\.(test|spec)\\.(ts|tsx|js)$",
   "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
   "moduleNameMapper": {
     "^~/(.*)$": "<rootDir>/src/$1",
+    "@amazon-devices/react-linear-gradient": "<rootDir>/test/__mocks__/LinearGradient.tsx",
     "react-native-gesture-handler": "<rootDir>/test/__mocks__/react-native-gesture-handler.js"
   },
   "modulePaths": ["<rootDir>/src"],
@@ -15,9 +16,6 @@
     "<rootDir>/src/",
     "<rootDir>/test/",
     "<rootDir>/node_modules/"
-  ],
-  "transformIgnorePatterns": [
-    "node_modules/(?!((jest-)?react-native|@react-native(-community)?|@amazon-devices)/)"
   ],
   "collectCoverage": false,
   "coverageReporters": ["json", "json-summary", "lcov", "text"],
@@ -27,5 +25,14 @@
     "!**/types.ts",
     "!src/**/*.d.ts"
   ],
-  "coverageDirectory": ".tmp/coverage"
+  "transformIgnorePatterns": [
+    "node_modules/(?![\\w\\-_]+)/node_modules/(?!react-native|@react-native)/"
+  ],
+  "coverageDirectory": ".tmp/coverage",
+  "globals": {
+    "ts-jest": {
+      "babelConfig": true,
+      "diagnostics": true
+    }
+  }
 }

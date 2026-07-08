@@ -56,7 +56,6 @@ const Limits = ({route, navigation}: ScreenProps) => {
       <Header title={title} name={name} navigation={navigation} />
       <View style={styles.seekbar}>
         <SeekBar
-          hasTVPreferredFocus={true}
           currentValue={INITIAL_VALUE}
           step={STEP_VALUE}
           totalValue={TOTAL_VALUE}

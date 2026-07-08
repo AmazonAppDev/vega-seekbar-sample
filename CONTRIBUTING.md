@@ -12,14 +12,6 @@ A handy [template](PR_ISSUE_TEMPLATE.md) is available to help you fill out any o
 >- If you haven't begun coding yet, we strongly suggest filing a Feature first to discuss your ideas with us.
 >- If you wanted to surprise us with completed work, please file a PR as per the instructions below, but please bear with us, as we may need to talk about it a little bit first.
 
-## Development Environment
-
-Before contributing, ensure your environment meets these requirements:
-
-* **Node.js 22.14 or later** — required by the React Native 0.83 toolchain
-* **npm** — comes with Node.js, used for dependency management and build scripts
-
-
 ## Reporting Bugs/Feature Requests
 
 We welcome you to use the GitHub issue tracker to report bugs or suggest features.

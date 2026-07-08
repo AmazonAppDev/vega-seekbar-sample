@@ -204,7 +204,6 @@ const CustomDisablingConfig = ({route, navigation}: ScreenProps) => {
       <Header title={title} name={name} navigation={navigation} />
       <View style={styles.seekbar}>
         <SeekBar
-          hasTVPreferredFocus={true}
           ref={seekBarRef}
           currentValue={INITIAL_VALUE}
           step={STEP_VALUE}
@@ -219,8 +218,10 @@ const CustomDisablingConfig = ({route, navigation}: ScreenProps) => {
           onFastForwardPress={handleOnFastForwardPress}
           onRewindPress={handleOnRewindPress}
           partialDisablingConfiguration={{
+            // Core feature: custom control over interaction types.
             skipBackward: false, // Always allow skip backward buttons.
             skipForward: false, // Always allow skip forward buttons.
+            select: !focused, // Disable select/press when unfocused.
             left: !focused, // Disable left D-pad when unfocused.
             right: !focused, // Disable right D-pad when unfocused.
             back: !focused, // Disable back button when unfocused.

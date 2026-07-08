@@ -268,7 +268,6 @@ const BreakMarkers = ({route, navigation}: ScreenProps) => {
           </TouchableOpacity>
         </View>
         <SeekBar
-          hasTVPreferredFocus={true}
           currentValue={progress}
           totalValue={TOTAL_VALUE}
           step={STEP_VALUE}

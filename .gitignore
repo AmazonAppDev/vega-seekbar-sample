@@ -1,15 +1,15 @@
+# Build files
+node_modules
+package-lock.json
+build
+
+# Other files
 *.iml
 *.swp
 .idea
 .DS_Store
 .vscode
 .tmp
-
-dist
-build
-node_modules
-CMakeUserPresets.json
 npm-debug.log
-package-lock.json
+prepareRelease.sh
 buildinfo.json
-.npmrc

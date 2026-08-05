@@ -12,6 +12,7 @@ import {THUMBNAIL_BASE_URL, TOTAL_IMAGES} from '../constants/thumbnails';
 import {COLORS} from '../constants/colors';
 import Header from '../components/Header';
 import {ScreenProps} from '../types/navigation';
+import {scaleUxToDp} from '../utils/scaleUxToDp';
 
 const INITIAL_VALUE = 0;
 const TOTAL_VALUE = 7000;
@@ -258,15 +259,15 @@ const ComplexUsage = ({route, navigation}: ScreenProps) => {
 
 const styles = StyleSheet.create({
   focusedThumb: {
-    height: 40,
-    borderRadius: 20,
-    width: 40,
+    height: scaleUxToDp(40),
+    borderRadius: scaleUxToDp(20),
+    width: scaleUxToDp(40),
     backgroundColor: COLORS.PRIMARY_BLUE,
   },
   unfocusedThumb: {
-    height: 40,
-    borderRadius: 20,
-    width: 10,
+    height: scaleUxToDp(40),
+    borderRadius: scaleUxToDp(20),
+    width: scaleUxToDp(10),
     backgroundColor: COLORS.WHITE,
   },
   container: {
@@ -278,34 +279,34 @@ const styles = StyleSheet.create({
     flex: 3,
     alignSelf: 'center',
     justifyContent: 'flex-end',
-    width: '85%',
-    paddingBottom: 80,
+    width: '82%',
+    paddingBottom: scaleUxToDp(80),
   },
   fastForwardRewindImage: {
-    height: 24,
-    width: 24,
+    height: scaleUxToDp(24),
+    width: scaleUxToDp(24),
   },
   fastForwardRewindLabel: {
-    fontSize: 20,
+    fontSize: scaleUxToDp(20),
     fontWeight: '700',
-    lineHeight: 24,
-    letterSpacing: 0.8,
+    lineHeight: scaleUxToDp(24),
+    letterSpacing: scaleUxToDp(0.8),
     color: COLORS.WHITE,
   },
   aboveThumb: {
     alignItems: 'center',
     justifyContent: 'center',
-    height: 80,
-    width: 120,
+    height: scaleUxToDp(80),
+    width: scaleUxToDp(120),
     display: 'flex',
     flexDirection: 'row',
   },
   belowLabel: {
     position: 'absolute',
-    height: 30,
-    width: 80,
-    borderRadius: 20,
-    top: 30,
+    height: scaleUxToDp(30),
+    width: scaleUxToDp(80),
+    borderRadius: scaleUxToDp(20),
+    top: scaleUxToDp(30),
     backgroundColor: COLORS.SECONDARY_BLUE,
     alignItems: 'center',
     justifyContent: 'center',

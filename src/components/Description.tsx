@@ -5,6 +5,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {COLORS} from '../constants/colors';
 import {getTileByName} from '../utils/tileUtils';
+import {scaleUxToDp} from '../utils/scaleUxToDp';
 
 interface DescriptionProps {
   tileName: string;
@@ -28,13 +29,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 2,
     alignSelf: 'flex-start',
-    marginLeft: 80,
-    marginHorizontal: 80,
+    marginLeft: scaleUxToDp(80),
+    marginHorizontal: scaleUxToDp(80),
   },
   description: {
-    fontSize: 27,
+    fontSize: scaleUxToDp(27),
     color: COLORS.WHITE,
-    lineHeight: 50,
+    lineHeight: scaleUxToDp(50),
   },
 });
 

@@ -5,6 +5,7 @@ import React, {useRef} from 'react';
 import {View, StyleSheet, Animated, Text, Image} from 'react-native';
 import {Pressable} from '@amazon-devices/react-native-kepler';
 import {COLORS} from '../constants/colors';
+import {scaleUxToDp} from '../utils/scaleUxToDp';
 
 interface TileProps {
   tile: {
@@ -91,42 +92,42 @@ export const Tile = ({tile, navigation, tileRef, onFocus}: TileProps) => {
 
 const styles = StyleSheet.create({
   tile: {
-    marginTop: 10,
+    marginTop: scaleUxToDp(10),
     width: '23%',
     height: '85%',
     marginRight: '2.5%',
   },
   pressable: {
     flex: 1,
-    borderRadius: 15,
+    borderRadius: scaleUxToDp(15),
   },
   tileFocused: {
-    borderWidth: 1.5,
+    borderWidth: scaleUxToDp(1.5),
     borderColor: COLORS.TILE_BORDER,
   },
   gradient: {
     flex: 1,
-    borderRadius: 15,
+    borderRadius: scaleUxToDp(15),
   },
   icon: {
-    width: 100,
-    height: 50,
-    marginTop: 20,
+    width: scaleUxToDp(100),
+    height: scaleUxToDp(50),
+    marginTop: scaleUxToDp(20),
   },
   contentContainer: {
-    paddingHorizontal: 30,
+    paddingHorizontal: scaleUxToDp(30),
     flex: 1,
   },
   title: {
-    fontSize: 25,
+    fontSize: scaleUxToDp(25),
     color: COLORS.WHITE,
     fontWeight: '500',
-    marginVertical: 5,
+    marginVertical: scaleUxToDp(5),
   },
   description: {
-    fontSize: 18,
+    fontSize: scaleUxToDp(18),
     color: COLORS.TILE_DESCRIPTION,
     fontWeight: '500',
-    marginTop: 10,
+    marginTop: scaleUxToDp(10),
   },
 });

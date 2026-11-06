@@ -95,6 +95,7 @@ const WithMarkers = ({route, navigation}: ScreenProps) => {
       <Header title={title} name={name} navigation={navigation} />
       <View style={styles.seekbar}>
         <SeekBar
+          hasTVPreferredFocus={true}
           currentValue={INITIAL_VALUE}
           totalValue={TOTAL_VALUE}
           step={STEP_VALUE}

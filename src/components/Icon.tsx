@@ -3,6 +3,7 @@
 
 import React from 'react';
 import {Image, StyleSheet, View} from 'react-native';
+import {scaleUxToDp} from '../utils/scaleUxToDp';
 
 interface IconProps {
   name: string;
@@ -35,16 +36,16 @@ const Icon = ({name}: IconProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 80,
+    marginHorizontal: scaleUxToDp(80),
     flex: 1.1,
     alignSelf: 'flex-start',
     justifyContent: 'center',
-    marginBottom: 20,
-    marginTop: 10,
+    marginBottom: scaleUxToDp(20),
+    marginTop: scaleUxToDp(10),
   },
   image: {
-    width: 200,
-    height: 150,
+    width: scaleUxToDp(200),
+    height: scaleUxToDp(150),
   },
 });
 

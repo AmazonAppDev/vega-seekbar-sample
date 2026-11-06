@@ -8,6 +8,7 @@ import {Image, StyleSheet, View} from 'react-native';
 import {COLORS} from '../constants/colors';
 import Header from '../components/Header';
 import {ScreenProps} from '../types/navigation';
+import {scaleUxToDp} from '../utils/scaleUxToDp';
 
 const INITIAL_VALUE = 100;
 const TOTAL_VALUE = 500;
@@ -80,15 +81,15 @@ const Limits = ({route, navigation}: ScreenProps) => {
 
 const styles = StyleSheet.create({
   focusedThumb: {
-    height: 40,
-    borderRadius: 20,
-    width: 40,
+    height: scaleUxToDp(40),
+    borderRadius: scaleUxToDp(20),
+    width: scaleUxToDp(40),
     backgroundColor: COLORS.PRIMARY_BLUE,
   },
   unfocusedThumb: {
-    height: 40,
-    borderRadius: 20,
-    width: 10,
+    height: scaleUxToDp(40),
+    borderRadius: scaleUxToDp(20),
+    width: scaleUxToDp(10),
     backgroundColor: COLORS.PRIMARY_BLUE,
   },
   container: {
@@ -101,19 +102,21 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'flex-end',
     width: '90%',
-    paddingBottom: 80,
+    paddingBottom: scaleUxToDp(80),
   },
   marker: {
-    height: 30,
-    width: 6,
-    borderRadius: 4,
+    height: scaleUxToDp(30),
+    width: scaleUxToDp(6),
+    borderRadius: scaleUxToDp(4),
     backgroundColor: COLORS.WHITE,
     position: 'relative',
-    top: -10,
+    top: scaleUxToDp(-10),
   },
   savedDelayArrow: {
+    width: scaleUxToDp(30),
+    height: scaleUxToDp(30),
     left: '-50%',
-    top: 30,
+    top: scaleUxToDp(30),
   },
 });
 

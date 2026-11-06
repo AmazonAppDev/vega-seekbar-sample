@@ -8,6 +8,7 @@ import {Image, StyleSheet, View, ViewStyle} from 'react-native';
 import {COLORS} from '../constants/colors';
 import Header from '../components/Header';
 import {ScreenProps} from '../types/navigation';
+import {scaleUxToDp} from '../utils/scaleUxToDp';
 
 type TickMarker = {
   position: number;
@@ -15,9 +16,9 @@ type TickMarker = {
 };
 
 const TOTAL_VALUE = 32;
-const TICK_SIZE = 8;
-const THUMB_SIZE = 36;
-const SEEKBAR_HEIGHT = 8;
+const TICK_SIZE = scaleUxToDp(8);
+const THUMB_SIZE = scaleUxToDp(36);
+const SEEKBAR_HEIGHT = scaleUxToDp(8);
 const DEFAULT_BAR_PROGRESS = 10;
 const STEP_VALUE = 1;
 const INITIAL_VALUE = 10;
@@ -142,7 +143,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'flex-end',
     width: '90%',
-    paddingBottom: 80,
+    paddingBottom: scaleUxToDp(80),
   },
   bar: {
     height: SEEKBAR_HEIGHT,
@@ -151,6 +152,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   savedDelayArrow: {
+    width: scaleUxToDp(30),
+    height: scaleUxToDp(30),
     left: '-50%',
     top: (SEEKBAR_HEIGHT + THUMB_SIZE) / 2,
   },
@@ -161,15 +164,15 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.WHITE,
   },
   focusedThumb: {
-    borderRadius: 20,
+    borderRadius: scaleUxToDp(20),
     height: THUMB_SIZE,
     width: THUMB_SIZE,
     backgroundColor: COLORS.PRIMARY_BLUE,
   },
   unfocusedThumb: {
-    borderRadius: 20,
+    borderRadius: scaleUxToDp(20),
     height: THUMB_SIZE,
-    width: 10,
+    width: scaleUxToDp(10),
     backgroundColor: COLORS.PRIMARY_BLUE,
   },
 });

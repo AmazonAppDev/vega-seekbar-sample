@@ -4,6 +4,7 @@
 import {Pressable} from '@amazon-devices/react-native-kepler';
 import React from 'react';
 import {StyleSheet, Text} from 'react-native';
+import {scaleUxToDp} from '../utils/scaleUxToDp';
 
 interface ButtonProps {
   text: string;
@@ -24,21 +25,21 @@ export const Button = ({text, navigation}: ButtonProps) => {
 const styles = StyleSheet.create({
   tile: {
     justifyContent: 'center',
-    marginTop: 20,
-    width: 200,
-    height: 60,
+    marginTop: scaleUxToDp(20),
+    width: scaleUxToDp(200),
+    height: scaleUxToDp(60),
     backgroundColor: 'rgba(59,59,59,0.25)',
-    borderRadius: 30,
+    borderRadius: scaleUxToDp(30),
   },
   tileFocused: {
     backgroundColor: 'rgba(59,59,59,0.4)',
-    borderWidth: 1,
+    borderWidth: scaleUxToDp(1),
     borderColor: 'white',
     transform: [{scale: 1.1}],
   },
   buttonText: {
     color: 'white',
-    fontSize: 25,
+    fontSize: scaleUxToDp(25),
     fontWeight: '600',
     textAlign: 'center',
   },

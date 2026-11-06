@@ -8,6 +8,7 @@ import {Button} from '../components/Button';
 import {tileData} from '../data/tileData';
 import {COLORS} from '../constants/colors';
 import {useIsFocused} from '@amazon-devices/react-navigation__native';
+import {scaleUxToDp} from '../utils/scaleUxToDp';
 
 export const HomeScreen = ({navigation}: {navigation: any}) => {
   const styles = getStyles();
@@ -84,7 +85,7 @@ const getStyles = () =>
   StyleSheet.create({
     container: {
       backgroundColor: COLORS.LIGHT_BLACK,
-      paddingHorizontal: 50,
+      paddingHorizontal: scaleUxToDp(50),
     },
     headerContainer: {
       height: '24%',
@@ -93,7 +94,7 @@ const getStyles = () =>
     },
     leftSection: {
       justifyContent: 'space-evenly',
-      marginBottom: 20,
+      marginBottom: scaleUxToDp(20),
     },
     subtitleSection: {
       flexDirection: 'row',
@@ -101,19 +102,19 @@ const getStyles = () =>
     },
     titleRow: {
       flexDirection: 'row',
-      marginTop: 20,
+      marginTop: scaleUxToDp(20),
     },
     separator: {
-      width: 2,
+      width: scaleUxToDp(2),
       backgroundColor: 'white',
-      marginLeft: 10,
-      marginRight: 20,
-      height: 30,
-      marginTop: 7,
+      marginLeft: scaleUxToDp(10),
+      marginRight: scaleUxToDp(20),
+      height: scaleUxToDp(30),
+      marginTop: scaleUxToDp(7),
     },
     buttonContainer: {
       justifyContent: 'center',
-      marginBottom: 20,
+      marginBottom: scaleUxToDp(20),
     },
     tilesRow: {
       flexDirection: 'row',
@@ -122,18 +123,18 @@ const getStyles = () =>
       justifyContent: 'flex-start',
     },
     logo: {
-      width: 180,
-      height: 40,
-      marginTop: 10,
+      width: scaleUxToDp(180),
+      height: scaleUxToDp(40),
+      marginTop: scaleUxToDp(10),
     },
     appName: {
-      fontSize: 35,
+      fontSize: scaleUxToDp(35),
       fontWeight: '500',
       color: 'white',
     },
     subtitle: {
       marginVertical: 0,
-      fontSize: 55,
+      fontSize: scaleUxToDp(55),
       fontWeight: '400',
       color: '#00ADE1',
     },

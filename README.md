@@ -28,9 +28,10 @@ Introduction
 | React | 19.2.0 |
 | Kepler UI Components | 3.1.0+ |
 | React Native Kepler | 4.0.0 |
-| React Navigation | 8.x |
+| React Navigation | 8.0.x |
 | Node.js | 22.14+ |
-| Vega SDK | 0.24+ |
+| Vega SDK | 2.0+ |
+| Vega OS | 2.0+ |
 
 
 Build and run the app
@@ -40,10 +41,12 @@ Build and run the app
 
 Before you launch the sample app, make sure that you have:
 
-* [Vega Developer Tools](https://developer.amazon.com/docs/vega/latest/install-vega-sdk.html) (Vega SDK 0.24+)
+* [Vega Developer Tools](https://developer.amazon.com/docs/vega/latest/install-vega-sdk.html) (Vega SDK 2.0+)
 * [Python v3.x](https://www.python.org/downloads/)
 * [Java Runtime Environment v21 or later](https://learn.microsoft.com/en-us/java/openjdk/download)
 * [NodeJS v22.14 or later](https://nodejs.org/en/download/)
+
+**Note**: Building this app requires Vega SDK 2.0 or later. The app targets Vega OS 2.0 (`min` and `target` in the `[os.version]` section of `manifest.toml`). To support OS 1.2 devices, you can set `min = "1.2"`, but then guard any API added after OS 1.2. See [Target OS versions](https://developer.amazon.com/docs/vega/latest/target-os-version.html).
 
 ### Step 1: Build the app
 
@@ -196,6 +199,11 @@ See [LICENSE](LICENSE.txt) file.
 
 Release notes
 -------------
+
+### v2.0
+
+- Targets Vega OS 2.0 and requires Vega SDK 2.0.
+- Updated the `@amazon-devices/*` dependency ranges for OS 2.0.
 
 ### v0.24
 

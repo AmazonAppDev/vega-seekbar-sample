@@ -7,5 +7,13 @@
   "parserOptions": {
     "project": "./tsconfig.json"
   },
-  "parser": "@typescript-eslint/parser"
+  "parser": "@typescript-eslint/parser",
+  "overrides": [
+    {
+      "files": ["test/jest.setup.ts"],
+      "env": {
+        "jest": true
+      }
+    }
+  ]
 }

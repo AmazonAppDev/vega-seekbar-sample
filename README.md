@@ -10,15 +10,40 @@ Introduction
 
 **Key features**
 
-- Basic implementations with playback controls for video progress tracking.
-- Advanced implementations with trickplay images, Live TV support, and dynamic seeking limits.
-- Seeking controls including fast forward, rewind, and long press.
-- Visual feedback with markers for advertising and video segments.
-- Optimized navigation for TV remote controls when seeking.
+- Basic playback controls for tracking video progress.
+- Advanced seek bar features with trickplay images, Live TV support, and dynamic seeking limits.
+- Seeking controls for fast forward, rewind, and long press.
+- Visual markers for advertising and video segments.
+- Optimized TV remote control navigation for seeking.
 - Custom disabling configurations.
 - Speed acceleration and skip controls.
 
-**Note**: While this app contains recommendations, there are always different approaches to building components, screens, or using libraries. This guide serves as a starting point for what needs to be done, but we encourage you to explore and adopt best practices that suit your specific project requirements.
+**Note**: Although this app contains recommendations, you can take different approaches to building components, screens, or using libraries. This guide serves as a starting point, but we encourage you to explore and adopt best practices that suit your specific project requirements.
+
+**Compatibility**
+
+| Dependency | Version |
+|---|---|
+| React Native | 0.83.0 |
+| React | 19.2.0 |
+| Kepler UI Components | 3.1.0+ |
+| React Native Kepler | 4.0.0 |
+| React Navigation | 8.0.x |
+| Node.js | 22.14+ |
+| Vega SDK | 2.0+ |
+| Vega OS | 2.0+ |
+
+
+Branches
+--------
+
+> **Heads up:** `main` targets **Vega OS 2.0** (Vega SDK 2.0). Older Vega branches target OS 1.2. Check the branch you're on before you build, because the Vega SDK and OS versions must match.
+
+| Branch          | React Native | Vega OS                              | Use when                                      |
+| --------------- | ------------ | ------------------------------------ | --------------------------------------------- |
+| `main`          | 0.83         | 2.0 (`min` and `target` in manifest) | You're building for Vega OS 2.0 (the default) |
+| `release-rn-83` | 0.83         | 1.2 (`min` and `target` in manifest) | You need Vega OS 1.2 with React Native 0.83   |
+| `release-rn-72` | 0.72         | Not set in manifest                  | You need the older React Native 0.72 setup    |
 
 
 Build and run the app
@@ -26,7 +51,16 @@ Build and run the app
 
 ### Prerequisites
 
-Before you launch the sample app, make sure that you have [installed the Vega Developer Tools](https://developer.amazon.com/docs/vega/latest/install-vega-sdk.html) and NodeJS 18-20.
+Before you launch the sample app, make sure that you have:
+
+* [Vega Developer Tools](https://developer.amazon.com/docs/vega/latest/install-vega-sdk.html) (Vega SDK 2.0+)
+* [Python v3.x](https://www.python.org/downloads/)
+* [Java Runtime Environment v21 or later](https://learn.microsoft.com/en-us/java/openjdk/download)
+* [NodeJS v22.14 or later](https://nodejs.org/en/download/)
+
+**Note**: Building this app requires Vega SDK 2.0 or later. The app targets Vega OS 2.0 (`min` and `target` in the `[os.version]` section of `manifest.toml`). To support OS 1.2 devices, you can set `min = "1.2"`, but then guard any API added after OS 1.2. See [Target OS versions](https://developer.amazon.com/docs/vega/latest/target-os-version.html).
+
+> **Check the branch first.** `main` needs Vega SDK 2.0. Install a 2.0.x SDK and set it as the default with `vega sdk use <version>` ([Vega 2.0 Get Started guide](https://developer.amazon.com/docs/vega/2.0/vega-get-started)). Other branches target an older OS. See [Branches](#branches), and confirm with `[os.version]` in `manifest.toml`.
 
 ### Step 1: Build the app
 
@@ -36,7 +70,7 @@ You can also use [Vega Studio](https://developer.amazon.com/docs/vega/latest/set
 
 1. At the command prompt, navigate to the Vega Seek Bar Sample App source code directory. 
 
-2. To install the app dependencies, run the following command. 
+2. To install the app dependencies, run the following command. The installation can take several minutes to complete.
 
    ```
    npm install
@@ -50,9 +84,9 @@ You can also use [Vega Studio](https://developer.amazon.com/docs/vega/latest/set
 
 4. At the command prompt, in the **build** folder, verify that you generated the VPKG files for your device's architecture.
 
-   - **armv7-release/vegaseekbarapp_armv7.vpkg**&mdash;generated on x86_64 and Mac-M series devices to run on the Vega OS Fire TV Stick.
-   - **x86_64-release/vegaseekbarapp_x86_64.vpkg**&mdash;generated on x86_64 device to run on the VVD.
-   - **aarch64-release/vegaseekbarapp_aarch64.vpkg**&mdash;generated on Mac M-series device to run on the VVD.
+   - **armv7-release/vegaseekbarapp_armv7.vpkg**&mdash;generated on x86_64 and Mac M-series devices to run on the Vega OS Fire TV Stick.
+   - **x86_64-release/vegaseekbarapp_x86_64.vpkg**&mdash;generated on an x86_64 device to run on the VVD.
+   - **aarch64-release/vegaseekbarapp_aarch64.vpkg**&mdash;generated on a Mac M-series device to run on the VVD.
 
 ### Step 2: Run the app
 
@@ -64,17 +98,15 @@ You can also use [Vega Studio](https://developer.amazon.com/docs/vega/latest/set
    vega virtual-device start
    ```
 
-2. Go to the directory where you placed the VPKG files. 
+2. To install and launch the app on the Vega Virtual Device, run the following command, depending on your device architecture.
 
-3. To install and launch the app on the Vega Virtual Device, run the following command, depending on your device architecture.
-
-   - On Mac M-series based devices.
+   - On Mac M-series-based devices.
 
      ```
      vega run-app build/aarch64-release/vegaseekbarapp_aarch64.vpkg
      ```
 
-   - On x86_64 based devices.
+   - On x86_64-based devices.
      ```
      vega run-app build/x86_64-release/vegaseekbarapp_x86_64.vpkg
      ```
@@ -155,7 +187,7 @@ The app includes comprehensive seek bar examples accessible from the home screen
 Troubleshooting the app
 -----------------------
 
-If you're facing unexpected issues while trying to build and run the app (for example, the build is failing randomly, the app is not starting, the app is crashing randomly), try the following solutions:
+If you encounter unexpected issues when you build and run the app (for example, the build fails randomly, the app doesn't start, or the app crashes randomly), try the following solutions:
 
 1. To remove the **node_modules** folder, the **package-lock.json** file and other files related to your previous builds, run the following command. 
 
@@ -163,7 +195,7 @@ If you're facing unexpected issues while trying to build and run the app (for ex
    npm run clean
    ```
 
-2. To clear the cache while you are working in debug mode, run the following command. 
+2. To clear the cache when you work in debug mode, run the following command. 
    
    ```
    npm run start -- --reset-cache
@@ -181,6 +213,30 @@ See [LICENSE](LICENSE.txt) file.
 
 Release notes
 -------------
+
+### v2.0
+
+- Targets Vega OS 2.0 and requires Vega SDK 2.0.
+- Updated the `@amazon-devices/*` dependency ranges for OS 2.0.
+
+### v0.24
+
+Migrated to React Native 0.83 and Vega SDK 0.24.
+
+**Platform Updates**
+
+- **React Native 0.83**&mdash;Upgraded from 0.72 with React 19, new Yoga layout engine, and updated TV focus system.
+- **React Navigation 8**&mdash;Upgraded from v7, with React Native Screens v3.
+- **Kepler UI Components 3.1**&mdash;Upgraded from v2, with updated SeekBar API.
+- **Node.js 22.14+**&mdash;Required by the new toolchain (previously v18-v20).
+- **Build command**&mdash;`build-kepler` replaced by `build-vega`.
+
+**Migration Notes**
+
+- `Pressable` from `@amazon-devices/react-native-kepler` now requires `disabled !== true` to be focusable. Components using `partialDisablingConfiguration` with `select: !focused` should be reviewed.
+- `TouchableOpacity` requires `onPress` (or `onPressIn`/`onPressOut`) to participate in TV focus traversal.
+- Default `borderColor` is now `'black'` instead of transparent&mdash;add explicit `borderColor: 'transparent'` where borders are used only for focus state styling.
+- `react-linear-gradient` replaced by native `experimental_backgroundImage` style prop.
 
 ### v0.21
 

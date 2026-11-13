@@ -12,6 +12,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {COLORS} from '../constants/colors';
 import Header from '../components/Header';
 import {ScreenProps} from '../types/navigation';
+import {scaleUxToDp} from '../utils/scaleUxToDp';
 
 const INITIAL_VALUE = 0;
 const TOTAL_VALUE = 300;
@@ -28,54 +29,54 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'flex-end',
     width: '90%',
-    paddingBottom: 80,
+    paddingBottom: scaleUxToDp(80),
   },
 
   focusedThumb: {
-    height: 30,
-    borderRadius: 15,
-    width: 30,
+    height: scaleUxToDp(30),
+    borderRadius: scaleUxToDp(15),
+    width: scaleUxToDp(30),
     backgroundColor: COLORS.PRIMARY_BLUE,
   },
   unfocusedThumb: {
-    height: 30,
-    borderRadius: 15,
-    width: 10,
+    height: scaleUxToDp(30),
+    borderRadius: scaleUxToDp(15),
+    width: scaleUxToDp(10),
     backgroundColor: COLORS.WHITE,
   },
   buttonsContainer: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
     width: '100%',
-    marginBottom: 50,
+    marginBottom: scaleUxToDp(50),
   },
   button: {
     backgroundColor: COLORS.PRIMARY_BLUE,
-    height: 60,
-    width: 200,
-    borderRadius: 20,
-    marginRight: 10,
+    height: scaleUxToDp(60),
+    width: scaleUxToDp(200),
+    borderRadius: scaleUxToDp(20),
+    marginRight: scaleUxToDp(10),
   },
   buttonText: {
     color: COLORS.BLACK,
     textAlign: 'center',
-    fontSize: 25,
+    fontSize: scaleUxToDp(25),
     fontWeight: 'bold',
     textAlignVertical: 'center',
     height: '100%',
     width: '100%',
   },
   belowMarker: {
-    height: 100,
-    width: 100,
+    height: scaleUxToDp(100),
+    width: scaleUxToDp(100),
     backgroundColor: 'transparent',
   },
   belowMarkerText: {
     color: COLORS.WHITE,
-    fontSize: 20,
+    fontSize: scaleUxToDp(20),
     fontWeight: '400',
-    marginTop: 20,
-    marginLeft: 0,
+    marginTop: scaleUxToDp(20),
+    marginLeft: scaleUxToDp(0),
   },
 });
 
@@ -268,6 +269,7 @@ const BreakMarkers = ({route, navigation}: ScreenProps) => {
           </TouchableOpacity>
         </View>
         <SeekBar
+          hasTVPreferredFocus={true}
           currentValue={progress}
           totalValue={TOTAL_VALUE}
           step={STEP_VALUE}

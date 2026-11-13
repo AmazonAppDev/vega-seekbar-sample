@@ -8,6 +8,7 @@ import {StyleSheet, View} from 'react-native';
 import {COLORS} from '../constants/colors';
 import Header from '../components/Header';
 import {ScreenProps} from '../types/navigation';
+import {scaleUxToDp} from '../utils/scaleUxToDp';
 
 /**
  * Custom thumb icon with circular focused state and rectangular unfocused state.
@@ -51,6 +52,7 @@ const BasicUsage = ({route, navigation}: ScreenProps) => {
       <Header title={title} name={name} navigation={navigation} />
       <View style={styles.seekbar}>
         <SeekBar
+          hasTVPreferredFocus={true}
           currentValue={INITIAL_VALUE}
           totalValue={TOTAL_VALUE}
           step={STEP_VALUE}
@@ -71,15 +73,15 @@ const BasicUsage = ({route, navigation}: ScreenProps) => {
 
 const styles = StyleSheet.create({
   focusedThumb: {
-    height: 40,
-    borderRadius: 20,
-    width: 40,
+    height: scaleUxToDp(40),
+    borderRadius: scaleUxToDp(20),
+    width: scaleUxToDp(40),
     backgroundColor: COLORS.PRIMARY_BLUE,
   },
   unfocusedThumb: {
-    height: 40,
-    borderRadius: 20,
-    width: 10,
+    height: scaleUxToDp(40),
+    borderRadius: scaleUxToDp(20),
+    width: scaleUxToDp(10),
     backgroundColor: COLORS.WHITE,
   },
   container: {
@@ -92,7 +94,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'flex-end',
     width: '90%',
-    paddingBottom: 80,
+    paddingBottom: scaleUxToDp(80),
   },
 });
 

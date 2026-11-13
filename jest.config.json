@@ -1,21 +1,26 @@
 {
   "preset": "react-native",
-  "transform": {
-    "^.+\\.tsx?$": "ts-jest"
-  },
-  "setupFiles": ["./node_modules/@amazon-devices/react-native-kepler/jest/setup.js"],
+  "setupFiles": [
+    "./test/jest.setup.ts",
+    "./node_modules/@amazon-devices/react-native-kepler/jest/setup.js"
+  ],
   "testRegex": "/test/.*\\.(test|spec)\\.(ts|tsx|js)$",
   "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
   "moduleNameMapper": {
     "^~/(.*)$": "<rootDir>/src/$1",
-    "@amazon-devices/react-linear-gradient": "<rootDir>/test/__mocks__/LinearGradient.tsx",
-    "react-native-gesture-handler": "<rootDir>/test/__mocks__/react-native-gesture-handler.js"
+    "react-native-gesture-handler": "<rootDir>/test/__mocks__/react-native-gesture-handler.js",
+    "^@amazon-devices/react-navigation__native$": "<rootDir>/test/__mocks__/react-navigation__native.js",
+    "^@amazon-devices/react-navigation__stack$": "<rootDir>/test/__mocks__/react-navigation__stack.js",
+    "^@amazon-devices/react-native-kepler$": "react-native"
   },
   "modulePaths": ["<rootDir>/src"],
   "roots": [
     "<rootDir>/src/",
     "<rootDir>/test/",
     "<rootDir>/node_modules/"
+  ],
+  "transformIgnorePatterns": [
+    "node_modules/(?!((jest-)?react-native|@react-native(-community)?|@amazon-devices)/)"
   ],
   "collectCoverage": false,
   "coverageReporters": ["json", "json-summary", "lcov", "text"],
@@ -25,14 +30,5 @@
     "!**/types.ts",
     "!src/**/*.d.ts"
   ],
-  "transformIgnorePatterns": [
-    "node_modules/(?![\\w\\-_]+)/node_modules/(?!react-native|@react-native)/"
-  ],
-  "coverageDirectory": ".tmp/coverage",
-  "globals": {
-    "ts-jest": {
-      "babelConfig": true,
-      "diagnostics": true
-    }
-  }
+  "coverageDirectory": ".tmp/coverage"
 }

@@ -3,9 +3,9 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {StyleSheet, Text, View, Image, Animated} from 'react-native';
 import {Pressable} from '@amazon-devices/react-native-kepler';
-import LinearGradient from '@amazon-devices/react-linear-gradient';
 import {COLORS} from '../constants/colors';
 import Title from '../components/Title';
+import {scaleUxToDp} from '../utils/scaleUxToDp';
 
 const Docs = ({navigation}: {navigation: any}) => {
   const [selectedQR, setSelectedQR] = useState(0);
@@ -76,16 +76,15 @@ const Docs = ({navigation}: {navigation: any}) => {
                   );
 
                   return focused ? (
-                    <LinearGradient
-                      colors={[
-                        COLORS.TILE_GRADIENT_START,
-                        COLORS.TILE_GRADIENT_END,
-                      ]}
-                      start={{x: 0, y: 0}}
-                      end={{x: 1, y: 0}}
-                      style={styles.gradient}>
+                    <View
+                      style={[
+                        styles.gradient,
+                        {
+                          experimental_backgroundImage: `linear-gradient(to right, ${COLORS.TILE_GRADIENT_START}, ${COLORS.TILE_GRADIENT_END})`,
+                        },
+                      ]}>
                       {content}
-                    </LinearGradient>
+                    </View>
                   ) : (
                     content
                   );
@@ -114,12 +113,12 @@ const styles = StyleSheet.create({
   mainContent: {
     flex: 6,
     flexDirection: 'row',
-    marginTop: 100,
+    marginTop: scaleUxToDp(100),
   },
   listContainer: {
     flex: 1,
     justifyContent: 'flex-start',
-    paddingLeft: 50,
+    paddingLeft: scaleUxToDp(50),
   },
   qrContainer: {
     flex: 1,
@@ -127,38 +126,38 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   button: {
-    borderRadius: 15,
-    marginVertical: 20,
+    borderRadius: scaleUxToDp(15),
+    marginVertical: scaleUxToDp(20),
     width: '100%',
-    marginLeft: 20,
+    marginLeft: scaleUxToDp(20),
   },
   buttonFocused: {
-    borderWidth: 1.5,
+    borderWidth: scaleUxToDp(1.5),
     borderColor: COLORS.TILE_BORDER,
   },
   gradient: {
-    borderRadius: 15,
+    borderRadius: scaleUxToDp(15),
   },
   contentContainer: {
-    paddingHorizontal: 30,
-    paddingVertical: 40,
+    paddingHorizontal: scaleUxToDp(30),
+    paddingVertical: scaleUxToDp(40),
     width: '100%',
   },
   buttonText: {
-    fontSize: 30,
+    fontSize: scaleUxToDp(30),
     fontWeight: 'bold',
-    marginBottom: 5,
+    marginBottom: scaleUxToDp(5),
     color: COLORS.WHITE,
   },
   descriptionText: {
-    fontSize: 25,
+    fontSize: scaleUxToDp(25),
     color: COLORS.PRIMARY_BLUE,
   },
   qrImage: {
-    width: 500,
-    height: 500,
-    borderWidth: 20,
-    borderRadius: 20,
+    width: scaleUxToDp(500),
+    height: scaleUxToDp(500),
+    borderWidth: scaleUxToDp(20),
+    borderRadius: scaleUxToDp(20),
     borderColor: COLORS.LIGHT_GREY,
   },
 });

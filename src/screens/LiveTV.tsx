@@ -13,6 +13,7 @@ import {THUMBNAIL_BASE_URL, TOTAL_IMAGES} from '../constants/thumbnails';
 import {COLORS} from '../constants/colors';
 import Header from '../components/Header';
 import {ScreenProps} from '../types/navigation';
+import {scaleUxToDp} from '../utils/scaleUxToDp';
 
 const INITIAL_VALUE = 50;
 const TOTAL_VALUE = 1000;
@@ -35,88 +36,88 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'flex-end',
     width: '90%',
-    paddingBottom: 80,
+    paddingBottom: scaleUxToDp(80),
   },
 
   buttonsContainer: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
     width: '100%',
-    marginBottom: 35,
-    marginLeft: 220,
+    marginBottom: scaleUxToDp(35),
+    marginLeft: scaleUxToDp(220),
   },
   button: {
     backgroundColor: COLORS.WHITE,
-    height: 60,
-    width: 200,
-    borderRadius: 20,
-    marginRight: 10,
+    height: scaleUxToDp(60),
+    width: scaleUxToDp(200),
+    borderRadius: scaleUxToDp(20),
+    marginRight: scaleUxToDp(10),
   },
   buttonText: {
     color: COLORS.BLACK,
     textAlign: 'center',
-    fontSize: 25,
+    fontSize: scaleUxToDp(25),
     fontWeight: 'bold',
     textAlignVertical: 'center',
     height: '100%',
     width: '100%',
   },
   playPauseIcon: {
-    height: 90,
-    width: 90,
+    height: scaleUxToDp(90),
+    width: scaleUxToDp(90),
   },
   liveMarker: {
-    height: 25,
-    width: 25,
+    height: scaleUxToDp(25),
+    width: scaleUxToDp(25),
     backgroundColor: COLORS.RED,
-    borderWidth: 3,
+    borderWidth: scaleUxToDp(3),
     borderColor: COLORS.WHITE,
-    borderRadius: 12,
-    top: -8,
-    left: -3,
+    borderRadius: scaleUxToDp(12),
+    top: scaleUxToDp(-8),
+    left: scaleUxToDp(-3),
   },
   playPauseIconContainer: {
     position: 'absolute',
-    top: 650,
+    top: scaleUxToDp(650),
   },
   focusedThumb: {
-    height: 24,
-    borderRadius: 12,
-    width: 24,
+    height: scaleUxToDp(24),
+    borderRadius: scaleUxToDp(12),
+    width: scaleUxToDp(24),
     backgroundColor: COLORS.WHITE,
     shadowColor: COLORS.SHADOW_BLACK,
-    shadowOffset: {width: 0, height: 2},
+    shadowOffset: {width: scaleUxToDp(0), height: scaleUxToDp(2)},
     shadowOpacity: 0.5,
     shadowRadius: 3,
     elevation: 5,
   },
   unfocusedThumb: {
-    height: 24,
-    borderRadius: 12,
-    width: 3,
+    height: scaleUxToDp(24),
+    borderRadius: scaleUxToDp(12),
+    width: scaleUxToDp(3),
     backgroundColor: COLORS.WHITE,
     shadowColor: COLORS.SHADOW_BLACK,
-    shadowOffset: {width: 0, height: 2},
+    shadowOffset: {width: scaleUxToDp(0), height: scaleUxToDp(2)},
     shadowOpacity: 0.5,
     shadowRadius: 3,
     elevation: 5,
   },
   belowMarker: {
-    height: 100,
-    width: 100,
+    height: scaleUxToDp(100),
+    width: scaleUxToDp(100),
     backgroundColor: 'transparent',
   },
   belowMarkerText: {
     color: COLORS.WHITE,
-    fontSize: 20,
+    fontSize: scaleUxToDp(20),
     fontWeight: '400',
-    marginTop: 20,
-    marginLeft: -10,
+    marginTop: scaleUxToDp(20),
+    marginLeft: scaleUxToDp(-10),
   },
   displayAboveThumb: {
     color: COLORS.WHITE,
-    width: 40,
-    height: 50,
+    width: scaleUxToDp(80),
+    height: scaleUxToDp(50),
   },
 });
 
@@ -341,6 +342,7 @@ const LiveTV = ({route, navigation}: ScreenProps) => {
 
       <View style={styles.seekbar}>
         <SeekBar
+          hasTVPreferredFocus={true}
           currentValue={progress}
           totalValue={TOTAL_VALUE * EXTRA_SPACE_LIVE_POINT} // Extra space beyond 100% for live point.
           step={STEP_VALUE}

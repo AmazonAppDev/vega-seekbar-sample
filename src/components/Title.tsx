@@ -5,6 +5,7 @@ import React from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
 import {COLORS} from '../constants/colors';
 import {Pressable} from '@amazon-devices/react-native-kepler';
+import {scaleUxToDp} from '../utils/scaleUxToDp';
 
 const ARROW_BACK = require('../assets/images/arrow-back.png');
 
@@ -33,7 +34,9 @@ const Title = ({title, navigation}: TitleProps) => {
             resizeMode="center"
           />
         </Pressable>
-        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.title} numberOfLines={1}>
+          {title}
+        </Text>
       </View>
     </View>
   );
@@ -44,30 +47,31 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     alignSelf: 'flex-start',
-    marginHorizontal: 80,
+    marginHorizontal: scaleUxToDp(80),
   },
   titleRow: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   backButton: {
-    marginRight: 10,
-    padding: 10,
-    borderRadius: 50,
-    borderWidth: 2,
-    marginLeft: -25,
+    marginRight: scaleUxToDp(10),
+    padding: scaleUxToDp(10),
+    borderRadius: scaleUxToDp(50),
+    borderWidth: scaleUxToDp(2),
+    borderColor: 'transparent',
+    marginLeft: scaleUxToDp(-25),
   },
   backButtonFocused: {
     borderColor: COLORS.TILE_BORDER,
     backgroundColor: COLORS.TILE_BG_UNFOCUSED,
   },
   backArrow: {
-    width: 50,
-    height: 50,
+    width: scaleUxToDp(50),
+    height: scaleUxToDp(50),
     tintColor: COLORS.WHITE,
   },
   title: {
-    fontSize: 60,
+    fontSize: scaleUxToDp(60),
     fontWeight: 'bold',
     color: COLORS.WHITE,
   },

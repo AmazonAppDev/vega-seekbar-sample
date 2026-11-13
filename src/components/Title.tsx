@@ -34,7 +34,9 @@ const Title = ({title, navigation}: TitleProps) => {
             resizeMode="center"
           />
         </Pressable>
-        <Text style={styles.title} numberOfLines={1}>{title}</Text>
+        <Text style={styles.title} numberOfLines={1}>
+          {title}
+        </Text>
       </View>
     </View>
   );

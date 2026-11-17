@@ -8,7 +8,10 @@
   "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
   "moduleNameMapper": {
     "^~/(.*)$": "<rootDir>/src/$1",
-    "react-native-gesture-handler": "<rootDir>/test/__mocks__/react-native-gesture-handler.js"
+    "react-native-gesture-handler": "<rootDir>/test/__mocks__/react-native-gesture-handler.js",
+    "^@amazon-devices/react-navigation__native$": "<rootDir>/test/__mocks__/react-navigation__native.js",
+    "^@amazon-devices/react-navigation__stack$": "<rootDir>/test/__mocks__/react-navigation__stack.js",
+    "^@amazon-devices/react-native-kepler$": "react-native"
   },
   "modulePaths": ["<rootDir>/src"],
   "roots": [
